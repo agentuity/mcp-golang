@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
+	mcp_golang "github.com/agentuity/mcp-golang"
+	"github.com/agentuity/mcp-golang/transport/http"
 	"github.com/davecgh/go-spew/spew"
-	mcp_golang "github.com/metoro-io/mcp-golang"
-	"github.com/metoro-io/mcp-golang/transport/http"
 )
 
 func main() {

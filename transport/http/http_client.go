@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/metoro-io/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/transport"
 )
 
 // HTTPClientTransport implements a client-side HTTP transport for MCP

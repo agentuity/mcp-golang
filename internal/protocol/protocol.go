@@ -164,7 +164,7 @@ func NewProtocol(options *ProtocolOptions) *Protocol {
 }
 
 // Connect attaches to the given transport, starts it, and starts listening for messages
-func (p *Protocol) Connect(tr transport.Transport) error {
+func (p *Protocol) Connect(ctx context.Context, tr transport.Transport) error {
 	p.transport = tr
 
 	tr.SetCloseHandler(func() {
@@ -188,7 +188,7 @@ func (p *Protocol) Connect(tr transport.Transport) error {
 		}
 	})
 
-	return tr.Start(context.Background())
+	return tr.Start(ctx)
 }
 
 func (p *Protocol) handleClose() {

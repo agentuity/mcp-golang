@@ -40,7 +40,7 @@ func main() {
 		panic(err)
 	}
 
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}

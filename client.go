@@ -46,7 +46,7 @@ func (c *Client) Initialize(ctx context.Context) (*InitializeResponse, error) {
 		return nil, errors.New("client already initialized")
 	}
 
-	err := c.protocol.Connect(c.transport)
+	err := c.protocol.Connect(ctx, c.transport)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to connect transport")
 	}

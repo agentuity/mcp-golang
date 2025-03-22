@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -22,7 +23,7 @@ type Content struct {
 func main() {
 	done := make(chan struct{})
 	server := mcp_golang.NewServer(stdio.NewStdioServerTransport())
-	err := server.Serve()
+	err := server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"net/http"
@@ -31,7 +32,7 @@ func main() {
 		}
 		return mcp_golang.NewToolResponse(mcp_golang.NewTextContent(string(output))), nil
 	})
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}

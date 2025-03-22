@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"time"
 
@@ -31,5 +32,5 @@ func main() {
 
 	// Start the server
 	log.Println("Starting HTTP server on :8081...")
-	server.Serve()
+	server.Serve(context.Background())
 }

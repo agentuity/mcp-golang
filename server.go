@@ -541,7 +541,7 @@ func createWrappedToolHandler(userHandler any) func(context.Context, baseCallToo
 	}
 }
 
-func (s *Server) Serve() error {
+func (s *Server) Serve(ctx context.Context) error {
 	if s.isRunning {
 		return fmt.Errorf("server is already running")
 	}
@@ -554,7 +554,7 @@ func (s *Server) Serve() error {
 	pr.SetRequestHandler("prompts/get", s.handlePromptCalls)
 	pr.SetRequestHandler("resources/list", s.handleListResources)
 	pr.SetRequestHandler("resources/read", s.handleResourceCalls)
-	err := pr.Connect(s.transport)
+	err := pr.Connect(ctx, s.transport)
 	if err != nil {
 		return err
 	}

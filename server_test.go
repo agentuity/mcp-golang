@@ -12,7 +12,7 @@ import (
 func TestServerListChangedNotifications(t *testing.T) {
 	mockTransport := testingutils.NewMockTransport()
 	server := NewServer(mockTransport)
-	err := server.Serve()
+	err := server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -38,7 +38,7 @@ func TestServerListChangedNotifications(t *testing.T) {
 	// Test tool deregistration notification
 	mockTransport = testingutils.NewMockTransport()
 	server = NewServer(mockTransport)
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -66,7 +66,7 @@ func TestServerListChangedNotifications(t *testing.T) {
 	}
 	mockTransport = testingutils.NewMockTransport()
 	server = NewServer(mockTransport)
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -87,7 +87,7 @@ func TestServerListChangedNotifications(t *testing.T) {
 	// Test prompt deregistration notification
 	mockTransport = testingutils.NewMockTransport()
 	server = NewServer(mockTransport)
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -112,7 +112,7 @@ func TestServerListChangedNotifications(t *testing.T) {
 	// Test resource registration notification
 	mockTransport = testingutils.NewMockTransport()
 	server = NewServer(mockTransport)
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -133,7 +133,7 @@ func TestServerListChangedNotifications(t *testing.T) {
 	// Test resource deregistration notification
 	mockTransport = testingutils.NewMockTransport()
 	server = NewServer(mockTransport)
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -159,7 +159,7 @@ func TestServerListChangedNotifications(t *testing.T) {
 func TestHandleListToolsPagination(t *testing.T) {
 	mockTransport := testingutils.NewMockTransport()
 	server := NewServer(mockTransport)
-	err := server.Serve()
+	err := server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -287,7 +287,7 @@ func TestHandleListToolsPagination(t *testing.T) {
 func TestHandleListPromptsPagination(t *testing.T) {
 	mockTransport := testingutils.NewMockTransport()
 	server := NewServer(mockTransport)
-	err := server.Serve()
+	err := server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -415,7 +415,7 @@ func TestHandleListPromptsPagination(t *testing.T) {
 func TestHandleListResourcesNoParams(t *testing.T) {
 	mockTransport := testingutils.NewMockTransport()
 	server := NewServer(mockTransport)
-	err := server.Serve()
+	err := server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -451,7 +451,7 @@ func TestHandleListResourcesNoParams(t *testing.T) {
 func TestHandleListResourcesPagination(t *testing.T) {
 	mockTransport := testingutils.NewMockTransport()
 	server := NewServer(mockTransport)
-	err := server.Serve()
+	err := server.Serve(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}

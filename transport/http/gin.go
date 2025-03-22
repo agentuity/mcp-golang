@@ -15,6 +15,8 @@ type GinTransport struct {
 	*baseTransport
 }
 
+var _ transport.Transport = (*GinTransport)(nil)
+
 // NewGinTransport creates a new Gin transport
 func NewGinTransport() *GinTransport {
 	return &GinTransport{
@@ -39,15 +41,15 @@ func (t *GinTransport) Send(ctx context.Context, message *transport.BaseJsonRpcM
 }
 
 // Close implements Transport.Close
-func (t *GinTransport) Close() error {
+func (t *GinTransport) Close(ctx context.Context) error {
 	if t.closeHandler != nil {
-		t.closeHandler()
+		t.closeHandler(ctx)
 	}
 	return nil
 }
 
 // SetCloseHandler implements Transport.SetCloseHandler
-func (t *GinTransport) SetCloseHandler(handler func()) {
+func (t *GinTransport) SetCloseHandler(handler func(ctx context.Context)) {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 	t.closeHandler = handler

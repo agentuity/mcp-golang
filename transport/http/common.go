@@ -14,10 +14,12 @@ import (
 type baseTransport struct {
 	messageHandler func(ctx context.Context, message *transport.BaseJsonRpcMessage)
 	errorHandler   func(error)
-	closeHandler   func()
+	closeHandler   func(ctx context.Context)
 	mu             sync.RWMutex
 	responseMap    map[int64]chan *transport.BaseJsonRpcMessage
 }
+
+var _ transport.Transport = (*baseTransport)(nil)
 
 func newBaseTransport() *baseTransport {
 	return &baseTransport{
@@ -37,15 +39,15 @@ func (t *baseTransport) Send(ctx context.Context, message *transport.BaseJsonRpc
 }
 
 // Close implements Transport.Close
-func (t *baseTransport) Close() error {
+func (t *baseTransport) Close(ctx context.Context) error {
 	if t.closeHandler != nil {
-		t.closeHandler()
+		t.closeHandler(ctx)
 	}
 	return nil
 }
 
 // SetCloseHandler implements Transport.SetCloseHandler
-func (t *baseTransport) SetCloseHandler(handler func()) {
+func (t *baseTransport) SetCloseHandler(handler func(ctx context.Context)) {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 	t.closeHandler = handler
@@ -163,4 +165,9 @@ func (t *baseTransport) readBody(reader io.Reader) ([]byte, error) {
 		return nil, fmt.Errorf("failed to read request body: %w", err)
 	}
 	return body, nil
+}
+
+// Start implements Transport.Start - no-op for base transport as it's handled by specific implementations
+func (t *baseTransport) Start(ctx context.Context) error {
+	return nil
 }

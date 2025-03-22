@@ -20,10 +20,12 @@ type StdioServerTransport struct {
 	reader    *bufio.Reader
 	writer    io.Writer
 	readBuf   *stdio.ReadBuffer
-	onClose   func()
+	onClose   func(ctx context.Context)
 	onError   func(error)
 	onMessage func(ctx context.Context, message *transport.BaseJsonRpcMessage)
 }
+
+var _ transport.Transport = (*StdioServerTransport)(nil)
 
 // NewStdioServerTransport creates a new StdioServerTransport using os.Stdin and os.Stdout
 func NewStdioServerTransport() *StdioServerTransport {
@@ -54,14 +56,14 @@ func (t *StdioServerTransport) Start(ctx context.Context) error {
 }
 
 // Close stops the transport and cleans up resources
-func (t *StdioServerTransport) Close() error {
+func (t *StdioServerTransport) Close(ctx context.Context) error {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 
 	t.started = false
 	t.readBuf.Clear()
 	if t.onClose != nil {
-		t.onClose()
+		t.onClose(ctx)
 	}
 	return nil
 }
@@ -83,8 +85,8 @@ func (t *StdioServerTransport) Send(ctx context.Context, message *transport.Base
 	return err
 }
 
-// SetCloseHandler sets the handler for close events
-func (t *StdioServerTransport) SetCloseHandler(handler func()) {
+// SetCloseHandler sets the callback for when the connection is closed
+func (t *StdioServerTransport) SetCloseHandler(handler func(ctx context.Context)) {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 	t.onClose = handler
@@ -109,7 +111,7 @@ func (t *StdioServerTransport) readLoop(ctx context.Context) {
 	for {
 		select {
 		case <-ctx.Done():
-			t.Close()
+			t.Close(ctx)
 			return
 		default:
 			t.mu.Lock()

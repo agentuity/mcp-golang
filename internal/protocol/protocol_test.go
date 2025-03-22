@@ -46,7 +46,7 @@ func TestProtocol_Close(t *testing.T) {
 	}
 
 	closeCalled := false
-	p.OnClose = func() {
+	p.OnClose = func(ctx context.Context) {
 		closeCalled = true
 	}
 

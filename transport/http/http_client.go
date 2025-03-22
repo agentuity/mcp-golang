@@ -18,7 +18,7 @@ type HTTPClientTransport struct {
 	endpoint       string
 	messageHandler func(ctx context.Context, message *transport.BaseJsonRpcMessage)
 	errorHandler   func(error)
-	closeHandler   func()
+	closeHandler   func(ctx context.Context)
 	mu             sync.RWMutex
 	client         *http.Client
 	headers        map[string]string
@@ -143,15 +143,15 @@ func (t *HTTPClientTransport) Send(ctx context.Context, message *transport.BaseJ
 }
 
 // Close implements Transport.Close
-func (t *HTTPClientTransport) Close() error {
+func (t *HTTPClientTransport) Close(ctx context.Context) error {
 	if t.closeHandler != nil {
-		t.closeHandler()
+		t.closeHandler(ctx)
 	}
 	return nil
 }
 
 // SetCloseHandler implements Transport.SetCloseHandler
-func (t *HTTPClientTransport) SetCloseHandler(handler func()) {
+func (t *HTTPClientTransport) SetCloseHandler(handler func(ctx context.Context)) {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 	t.closeHandler = handler

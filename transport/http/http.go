@@ -3,9 +3,11 @@ package http
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"sync"
+	"time"
 
 	"github.com/agentuity/mcp-golang/v2/transport"
 )
@@ -17,11 +19,13 @@ type HTTPTransport struct {
 	endpoint       string
 	messageHandler func(ctx context.Context, message *transport.BaseJsonRpcMessage)
 	errorHandler   func(error)
-	closeHandler   func()
+	closeHandler   func(ctx context.Context)
 	mu             sync.RWMutex
 	addr           string
 	responseMap    map[int64]chan *transport.BaseJsonRpcMessage
 }
+
+var _ transport.Transport = (*HTTPTransport)(nil)
 
 // NewHTTPTransport creates a new HTTP transport that listens on the specified endpoint
 func NewHTTPTransport(endpoint string) *HTTPTransport {
@@ -49,7 +53,13 @@ func (t *HTTPTransport) Start(ctx context.Context) error {
 		Handler: mux,
 	}
 
-	return t.server.ListenAndServe()
+	if err := t.server.ListenAndServe(); err != nil {
+		if errors.Is(err, http.ErrServerClosed) {
+			return nil
+		}
+		return fmt.Errorf("failed to start HTTP server: %w", err)
+	}
+	return nil
 }
 
 // Send implements Transport.Send
@@ -64,20 +74,22 @@ func (t *HTTPTransport) Send(ctx context.Context, message *transport.BaseJsonRpc
 }
 
 // Close implements Transport.Close
-func (t *HTTPTransport) Close() error {
+func (t *HTTPTransport) Close(ctx context.Context) error {
 	if t.server != nil {
-		if err := t.server.Close(); err != nil {
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		if err := t.server.Shutdown(shutdownCtx); err != nil {
 			return err
 		}
 	}
 	if t.closeHandler != nil {
-		t.closeHandler()
+		t.closeHandler(ctx)
 	}
 	return nil
 }
 
 // SetCloseHandler implements Transport.SetCloseHandler
-func (t *HTTPTransport) SetCloseHandler(handler func()) {
+func (t *HTTPTransport) SetCloseHandler(handler func(ctx context.Context)) {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 	t.closeHandler = handler

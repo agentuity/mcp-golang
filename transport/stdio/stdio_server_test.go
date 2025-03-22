@@ -58,7 +58,7 @@ func TestStdioServerTransport(t *testing.T) {
 		assert.Equal(t, "test", req.JsonRpcRequest.Method)
 		assert.Equal(t, transport.RequestId(1), req.JsonRpcRequest.Id)
 
-		err = tr.Close()
+		err = tr.Close(ctx)
 		assert.NoError(t, err)
 	})
 
@@ -72,7 +72,7 @@ func TestStdioServerTransport(t *testing.T) {
 		assert.Error(t, err)
 		assert.Contains(t, err.Error(), "already started")
 
-		err = transport.Close()
+		err = transport.Close(ctx)
 		assert.NoError(t, err)
 	})
 
@@ -140,7 +140,7 @@ func TestStdioServerTransport(t *testing.T) {
 		assert.NotNil(t, receivedErr)
 		assert.Contains(t, receivedErr.Error(), "failed to unmarshal JSON-RPC message, unrecognized type")
 
-		err = transport.Close()
+		err = transport.Close(ctx)
 		assert.NoError(t, err)
 	})
 
@@ -154,7 +154,7 @@ func TestStdioServerTransport(t *testing.T) {
 		assert.NoError(t, err)
 
 		var closed bool
-		transport.SetCloseHandler(func() {
+		transport.SetCloseHandler(func(ctx context.Context) {
 			closed = true
 		})
 

@@ -12,7 +12,7 @@ type MockTransport struct {
 	mu sync.RWMutex
 
 	// Callbacks
-	onClose   func()
+	onClose   func(ctx context.Context)
 	onError   func(error)
 	onMessage func(ctx context.Context, message *transport.BaseJsonRpcMessage)
 
@@ -21,6 +21,8 @@ type MockTransport struct {
 	closed   bool
 	started  bool
 }
+
+var _ transport.Transport = (*MockTransport)(nil)
 
 func NewMockTransport() *MockTransport {
 	return &MockTransport{
@@ -42,17 +44,17 @@ func (t *MockTransport) Send(ctx context.Context, message *transport.BaseJsonRpc
 	return nil
 }
 
-func (t *MockTransport) Close() error {
+func (t *MockTransport) Close(ctx context.Context) error {
 	t.mu.Lock()
 	t.closed = true
 	t.mu.Unlock()
 	if t.onClose != nil {
-		t.onClose()
+		t.onClose(ctx)
 	}
 	return nil
 }
 
-func (t *MockTransport) SetCloseHandler(handler func()) {
+func (t *MockTransport) SetCloseHandler(handler func(ctx context.Context)) {
 	t.mu.Lock()
 	t.onClose = handler
 	t.mu.Unlock()

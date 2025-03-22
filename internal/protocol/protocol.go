@@ -131,7 +131,7 @@ type Protocol struct {
 	progressHandlers map[transport.RequestId]ProgressCallback
 
 	// Callback for when the connection is closed for any reason
-	OnClose func()
+	OnClose func(ctx context.Context)
 	// Callback for when an error occurs
 	OnError func(error)
 	// Handler to invoke for any request types that do not have their own handler installed
@@ -167,8 +167,8 @@ func NewProtocol(options *ProtocolOptions) *Protocol {
 func (p *Protocol) Connect(ctx context.Context, tr transport.Transport) error {
 	p.transport = tr
 
-	tr.SetCloseHandler(func() {
-		p.handleClose()
+	tr.SetCloseHandler(func(ctx context.Context) {
+		p.handleClose(ctx)
 	})
 
 	tr.SetErrorHandler(func(err error) {
@@ -191,7 +191,7 @@ func (p *Protocol) Connect(ctx context.Context, tr transport.Transport) error {
 	return tr.Start(ctx)
 }
 
-func (p *Protocol) handleClose() {
+func (p *Protocol) handleClose(ctx context.Context) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
 
@@ -215,7 +215,7 @@ func (p *Protocol) handleClose() {
 	p.progressHandlers = make(map[transport.RequestId]ProgressCallback)
 
 	if p.OnClose != nil {
-		p.OnClose()
+		p.OnClose(ctx)
 	}
 }
 
@@ -371,7 +371,7 @@ func (p *Protocol) handleResponse(response *transport.BaseJSONRPCResponse, errRe
 // Close closes the connection
 func (p *Protocol) Close() error {
 	if p.transport != nil {
-		return p.transport.Close()
+		return p.transport.Close(context.Background())
 	}
 	return nil
 }

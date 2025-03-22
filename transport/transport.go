@@ -18,11 +18,11 @@ type Transport interface {
 	Send(ctx context.Context, message *BaseJsonRpcMessage) error
 
 	// Close closes the connection.
-	Close() error
+	Close(ctx context.Context) error
 
 	// SetCloseHandler sets the callback for when the connection is closed for any reason.
 	// This should be invoked when Close() is called as well.
-	SetCloseHandler(handler func())
+	SetCloseHandler(handler func(ctx context.Context))
 
 	// SetErrorHandler sets the callback for when an error occurs.
 	// Note that errors are not necessarily fatal; they are used for reporting any kind of exceptional condition out of band.

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
 	mcp_golang "github.com/agentuity/mcp-golang"
@@ -40,7 +41,7 @@ func main() {
 		return mcp_golang.NewResourceResponse(mcp_golang.NewTextEmbeddedResource("test://resource", "This is a test resource", "application/json")), nil
 	})
 
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}

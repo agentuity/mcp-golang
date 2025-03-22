@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"strings"
 	"time"
@@ -108,7 +109,7 @@ func main() {
 	}
 
 	// Start the server
-	if err := server.Serve(); err != nil {
+	if err := server.Serve(context.Background()); err != nil {
 		panic(err)
 	}
 

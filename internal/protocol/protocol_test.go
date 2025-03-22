@@ -21,7 +21,7 @@ func TestProtocol_Connect(t *testing.T) {
 	p := NewProtocol(nil)
 	transport := testingutils.NewMockTransport()
 
-	if err := p.Connect(transport); err != nil {
+	if err := p.Connect(context.Background(), transport); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 
@@ -41,7 +41,7 @@ func TestProtocol_Close(t *testing.T) {
 	p := NewProtocol(nil)
 	transport := testingutils.NewMockTransport()
 
-	if err := p.Connect(transport); err != nil {
+	if err := p.Connect(context.Background(), transport); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 
@@ -82,7 +82,7 @@ func TestProtocol_Request(t *testing.T) {
 	})
 	tr := testingutils.NewMockTransport()
 
-	if err := p.Connect(tr); err != nil {
+	if err := p.Connect(context.Background(), tr); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 	// Test request timeout
@@ -124,7 +124,7 @@ func TestProtocol_Notification(t *testing.T) {
 	p := NewProtocol(nil)
 	tr := testingutils.NewMockTransport()
 
-	if err := p.Connect(tr); err != nil {
+	if err := p.Connect(context.Background(), tr); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 
@@ -160,7 +160,7 @@ func TestProtocol_RequestHandler(t *testing.T) {
 	p := NewProtocol(nil)
 	tr := testingutils.NewMockTransport()
 
-	if err := p.Connect(tr); err != nil {
+	if err := p.Connect(context.Background(), tr); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 
@@ -212,7 +212,7 @@ func TestProtocol_NotificationHandler(t *testing.T) {
 	p := NewProtocol(nil)
 	tr := testingutils.NewMockTransport()
 
-	if err := p.Connect(tr); err != nil {
+	if err := p.Connect(context.Background(), tr); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 
@@ -251,7 +251,7 @@ func TestProtocol_Progress(t *testing.T) {
 	p := NewProtocol(nil)
 	tr := testingutils.NewMockTransport()
 
-	if err := p.Connect(tr); err != nil {
+	if err := p.Connect(context.Background(), tr); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 
@@ -336,7 +336,7 @@ func TestProtocol_ErrorHandling(t *testing.T) {
 	p := NewProtocol(nil)
 	tr := testingutils.NewMockTransport()
 
-	if err := p.Connect(tr); err != nil {
+	if err := p.Connect(context.Background(), tr); err != nil {
 		t.Fatalf("Connect failed: %v", err)
 	}
 

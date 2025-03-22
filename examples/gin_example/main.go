@@ -42,7 +42,7 @@ func main() {
 		panic(err)
 	}
 
-	go server.Serve()
+	go server.Serve(context.Background())
 
 	// Create a Gin router
 	r := gin.Default()

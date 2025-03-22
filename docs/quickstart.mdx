@@ -59,7 +59,7 @@ func main() {
 		return mcp_golang.NewResourceResponse(mcp_golang.NewTextEmbeddedResource("file://app_logs", "This is a test resource", "text/plain")), nil
 	})
 
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}
@@ -109,7 +109,7 @@ func main() {
     server.RegisterTool("hello", &HelloTool{})
 
     // Start the server
-    if err := server.Serve(); err != nil {
+    if err := server.Serve(context.Background()); err != nil {
         log.Fatal(err)
     }
 }

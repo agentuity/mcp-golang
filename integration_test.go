@@ -23,6 +23,7 @@ import (
 const testServerCode = `package main
 
 import (
+	"context"
 	mcp "github.com/agentuity/mcp-golang"
 	"github.com/agentuity/mcp-golang/transport/stdio"
 )
@@ -40,7 +41,7 @@ func main() {
 		panic(err)
 	}
 
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}

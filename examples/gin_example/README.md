@@ -42,7 +42,7 @@ server := mcp_golang.NewServer(transport)
 server.RegisterTool("mytool", "Tool description", myToolHandler)
 
 // Start the server
-go server.Serve()
+go server.Serve(context.Background())
 
 // Add the MCP endpoint to your Gin router
 router.POST("/mcp", transport.Handler())

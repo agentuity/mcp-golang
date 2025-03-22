@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
 	mcp "github.com/agentuity/mcp-golang"
@@ -29,7 +30,7 @@ func main() {
 	}
 
 	// Start the server
-	err = server.Serve()
+	err = server.Serve(context.Background())
 	if err != nil {
 		panic(err)
 	}

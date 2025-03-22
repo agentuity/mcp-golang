@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -24,8 +24,9 @@ const testServerCode = `package main
 
 import (
 	"context"
-	mcp "github.com/agentuity/mcp-golang"
-	"github.com/agentuity/mcp-golang/transport/stdio"
+
+  mcp "github.com/agentuity/mcp-golang/v2"
+	"github.com/agentuity/mcp-golang/v2/transport/stdio"
 )
 
 type EchoArgs struct {
@@ -79,7 +80,7 @@ func TestServerIntegration(t *testing.T) {
 	require.NoError(t, err, "Failed to initialize module: %s", string(output))
 
 	// Replace the dependency with the local version
-	cmd = exec.Command("go", "mod", "edit", "-replace", "github.com/agentuity/mcp-golang="+currentDir)
+	cmd = exec.Command("go", "mod", "edit", "-replace", "github.com/agentuity/mcp-golang/v2="+currentDir)
 	cmd.Dir = tmpDir
 	output, err = cmd.CombinedOutput()
 	require.NoError(t, err, "Failed to replace dependency: %s", string(output))

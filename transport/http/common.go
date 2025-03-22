@@ -7,7 +7,7 @@ import (
 	"io"
 	"sync"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 // baseTransport implements the common functionality for HTTP-based transports

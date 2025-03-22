@@ -6,8 +6,8 @@ import (
 	"io"
 	"net/http"
 
-	mcp_golang "github.com/agentuity/mcp-golang"
-	"github.com/agentuity/mcp-golang/transport/stdio"
+	mcp_golang "github.com/agentuity/mcp-golang/v2"
+	"github.com/agentuity/mcp-golang/v2/transport/stdio"
 )
 
 type WeatherArguments struct {

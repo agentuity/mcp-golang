@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 
 	"github.com/stretchr/testify/assert"
 )

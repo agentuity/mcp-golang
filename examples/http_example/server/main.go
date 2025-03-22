@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	mcp_golang "github.com/agentuity/mcp-golang"
-	"github.com/agentuity/mcp-golang/transport/http"
+	mcp_golang "github.com/agentuity/mcp-golang/v2"
+	"github.com/agentuity/mcp-golang/v2/transport/http"
 )
 
 // TimeArgs defines the arguments for the time tool

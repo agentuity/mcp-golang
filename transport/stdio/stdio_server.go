@@ -9,8 +9,8 @@ import (
 	"os"
 	"sync"
 
-	"github.com/agentuity/mcp-golang/transport"
-	"github.com/agentuity/mcp-golang/transport/stdio/internal/stdio"
+	"github.com/agentuity/mcp-golang/v2/transport"
+	"github.com/agentuity/mcp-golang/v2/transport/stdio/internal/stdio"
 )
 
 // StdioServerTransport implements server-side transport for stdio communication

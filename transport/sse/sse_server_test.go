@@ -5,7 +5,7 @@ package sse
 //	"bytes"
 //	"context"
 //	"encoding/json"
-//	"github.com/agentuity/mcp-golang"
+//	"github.com/agentuity/mcp-golang/v2"
 //	"net/http"
 //	"net/http/httptest"
 //	"strings"

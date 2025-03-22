@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/agentuity/mcp-golang/internal/testingutils"
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/internal/testingutils"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 // TestProtocol_Connect verifies the basic connection functionality of the Protocol.

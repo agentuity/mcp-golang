@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 // HTTPTransport implements a stateless HTTP transport for MCP

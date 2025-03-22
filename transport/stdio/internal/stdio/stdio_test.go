@@ -3,7 +3,7 @@ package stdio
 import (
 	"testing"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 
 	"github.com/stretchr/testify/assert"
 )

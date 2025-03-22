@@ -63,7 +63,7 @@ package sse
 //	"context"
 //	"encoding/json"
 //	"fmt"
-//	"github.com/agentuity/mcp-golang/transport"
+//	"github.com/agentuity/mcp-golang/v2/transport"
 //	"net/http"
 //	"sync"
 //

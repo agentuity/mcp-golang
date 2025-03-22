@@ -24,7 +24,8 @@ const testServerCode = `package main
 
 import (
 	"context"
-	mcp "github.com/agentuity/mcp-golang/v2"
+
+  mcp "github.com/agentuity/mcp-golang/v2"
 	"github.com/agentuity/mcp-golang/v2/transport/stdio"
 )
 

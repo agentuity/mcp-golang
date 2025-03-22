@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 // MockTransport implements Transport interface for testing

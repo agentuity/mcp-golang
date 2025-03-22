@@ -1,4 +1,4 @@
-module github.com/agentuity/mcp-golang
+module github.com/agentuity/mcp-golang/v2
 
 go 1.24
 

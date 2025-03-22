@@ -4,7 +4,7 @@ package sse
 //import (
 //	"context"
 //	"fmt"
-//	sse2 "github.com/agentuity/mcp-golang/transport/sse/internal/sse"
+//	sse2 "github.com/agentuity/mcp-golang/v2/transport/sse/internal/sse"
 //	"io"
 //	"net/http"
 //)

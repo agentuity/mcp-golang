@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/agentuity/mcp-golang/internal/protocol"
-	"github.com/agentuity/mcp-golang/internal/testingutils"
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/internal/protocol"
+	"github.com/agentuity/mcp-golang/v2/internal/testingutils"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 func TestServerListChangedNotifications(t *testing.T) {

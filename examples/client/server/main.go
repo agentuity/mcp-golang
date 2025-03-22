@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	mcp "github.com/agentuity/mcp-golang"
-	"github.com/agentuity/mcp-golang/transport/stdio"
+	mcp "github.com/agentuity/mcp-golang/v2"
+	"github.com/agentuity/mcp-golang/v2/transport/stdio"
 )
 
 // HelloArgs represents the arguments for the hello tool

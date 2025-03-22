@@ -72,7 +72,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 const DefaultRequestTimeoutMsec = 60000

@@ -62,7 +62,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/agentuity/mcp-golang/transport"
+	"github.com/agentuity/mcp-golang/v2/transport"
 )
 
 // ReadBuffer buffers a continuous stdio stream into discrete JSON-RPC messages.

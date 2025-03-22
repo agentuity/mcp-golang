@@ -23,7 +23,7 @@
 # mcp-golang 
 
 > [!WARNING]  
-> This is a fork of the original [mcp-golang](https://github.com/agentuity/mcp-golang) repository.
+> This is a fork of the original [mcp-golang](https://github.com/metoro-io/mcp-golang) repository.
 > The fork applies a few changes and bug fixes to the original codebase that are not yet merged into the main repository. All changes are released under the same license.
 
 mcp-golang is an unofficial implementation of the [Model Context Protocol](https://modelcontextprotocol.io/) in Go.

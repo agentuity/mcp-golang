@@ -11,9 +11,9 @@
 ![GitHub license](https://img.shields.io/github/license/metoro-io/mcp-golang)
 ![GitHub contributors](https://img.shields.io/github/contributors/metoro-io/mcp-golang)
 ![GitHub last commit](https://img.shields.io/github/last-commit/metoro-io/mcp-golang)
-[![GoDoc](https://pkg.go.dev/badge/github.com/metoro-io/mcp-golang.svg)](https://pkg.go.dev/github.com/metoro-io/mcp-golang)
-[![Go Report Card](https://goreportcard.com/badge/github.com/metoro-io/mcp-golang)](https://goreportcard.com/report/github.com/metoro-io/mcp-golang)
-![Tests](https://github.com/metoro-io/mcp-golang/actions/workflows/go-test.yml/badge.svg)
+[![GoDoc](https://pkg.go.dev/badge/github.com/agentuity/mcp-golang.svg)](https://pkg.go.dev/github.com/agentuity/mcp-golang)
+[![Go Report Card](https://goreportcard.com/badge/github.com/agentuity/mcp-golang)](https://goreportcard.com/report/github.com/agentuity/mcp-golang)
+![Tests](https://github.com/agentuity/mcp-golang/actions/workflows/go-test.yml/badge.svg)
 
 
 
@@ -21,6 +21,10 @@
 </div>
 
 # mcp-golang 
+
+> [!WARNING]  
+> This is a fork of the original [mcp-golang](https://github.com/agentuity/mcp-golang) repository.
+> The fork applies a few changes and bug fixes to the original codebase that are not yet merged into the main repository. All changes are released under the same license.
 
 mcp-golang is an unofficial implementation of the [Model Context Protocol](https://modelcontextprotocol.io/) in Go.
 
@@ -37,7 +41,7 @@ Docs at [https://mcpgolang.com](https://mcpgolang.com)
 
 ## Example Usage
 
-Install with `go get github.com/metoro-io/mcp-golang`
+Install with `go get github.com/agentuity/mcp-golang`
 
 ### Server Example
 
@@ -46,8 +50,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/metoro-io/mcp-golang"
-	"github.com/metoro-io/mcp-golang/transport/stdio"
+	"github.com/agentuity/mcp-golang"
+	"github.com/agentuity/mcp-golang/transport/stdio"
 )
 
 // Tool arguments are just structs, annotated with jsonschema tags
@@ -121,8 +125,8 @@ package main
 import (
     "context"
     "log"
-    mcp "github.com/metoro-io/mcp-golang"
-    "github.com/metoro-io/mcp-golang/transport/stdio"
+    mcp "github.com/agentuity/mcp-golang"
+    "github.com/agentuity/mcp-golang/transport/stdio"
 )
 
 // Define type-safe arguments

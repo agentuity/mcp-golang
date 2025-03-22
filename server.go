@@ -9,10 +9,10 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/agentuity/mcp-golang/internal/datastructures"
+	"github.com/agentuity/mcp-golang/internal/protocol"
+	"github.com/agentuity/mcp-golang/transport"
 	"github.com/invopop/jsonschema"
-	"github.com/metoro-io/mcp-golang/internal/datastructures"
-	"github.com/metoro-io/mcp-golang/internal/protocol"
-	"github.com/metoro-io/mcp-golang/transport"
 	"github.com/pkg/errors"
 )
 
